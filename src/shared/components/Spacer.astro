@@ -1,0 +1,26 @@
+---
+// get margin from the props
+// if no margin is set, use the default value
+
+const { margin } = Astro.props;
+---
+<style lang="scss">
+    div {
+        display: block;
+        width: 100%;
+        $unit: 30px;
+        &.small{
+            height: calc(#{$unit} * 1);
+        }
+        &.medium{
+            height: calc(#{$unit} * 3);
+        }
+        &.large{
+            height: calc(#{$unit} * 5);
+        }
+        &.extraLarge{
+            height: calc(#{$unit} * 9);
+        }
+    }
+</style>
+<div class={margin}></div>

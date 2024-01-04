@@ -1,0 +1,57 @@
+---
+const { image, startYear, endYear, title, flipped } = Astro.props;
+---
+<style lang="scss">
+    company-card{
+        background-image:url('company.svg');
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:20px;
+        width:300px;
+        height:300px;
+        z-index: 2;
+        gap:13px;
+        filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.45));
+        transition:.5s;
+        &:hover{
+            filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.75));
+        }
+        &.flipped{
+            transform:rotateZ(180deg);
+            >*{
+                transform:rotateZ(-180deg);
+            }
+        }
+        >*{
+            margin: 0;
+            color:var(--primary-color);
+            font-family: 'CascadiyaCode';
+        }
+        img{
+            margin-top: 40px;
+        }
+        p{
+            text-transform: capitalize;
+        }
+    }
+</style>
+<script lang="ts">
+    export class CompanyCard extends HTMLElement{
+        constructor(){
+            super();
+        }
+    }
+
+    customElements.define('company-card', CompanyCard);
+</script>
+
+<company-card class={flipped && 'flipped'}>
+    <img src={image}></img>
+    <span>{startYear}-{endYear}</span>
+    <p>{title}</p>
+</company-card>

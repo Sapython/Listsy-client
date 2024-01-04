@@ -1,0 +1,28 @@
+---
+import ExperienceCard from "./ExperienceCard.astro";
+let icons = [
+    'devicon-typescript-plain'
+]
+import '../../../shared/styles/fonts/rusty-cage-font.scss'
+import '../../../shared/styles/fonts/cascadiya-code-font.scss'
+---
+<style lang="scss">
+    @import url('../detail-style.scss');
+</style>
+<section class="detail two-col">
+    <div class="content">
+        <h2>What can I Do</h2>
+        <p>Well, I am a Full Stack Developer</p>
+        <br>
+        <p>My experience has been quite varied throughout my coding journey. Take a look at any one of them. (Or just scroll)</p>
+        <button>
+            Know More
+        </button>
+    </div>
+    <div class="experiences">
+        <ExperienceCard height="medium" class="webDev" title="Web Dev" experience="4" projects="12" icons={icons}></ExperienceCard>
+        <ExperienceCard height="large" class="appDev" title="App Dev" experience="4" projects="12" deployments="4" icons={icons}></ExperienceCard>
+        <ExperienceCard height="small" class="backendDev" title="Server" projects="2"></ExperienceCard>
+        <ExperienceCard height="small" class="tools" title="Dev Ops" icons={icons}></ExperienceCard>
+    </div>
+</section>

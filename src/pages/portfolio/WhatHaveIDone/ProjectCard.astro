@@ -1,0 +1,88 @@
+---
+const { projectName, description, route, techIcons } = Astro.props;
+---
+<script lang="ts">
+    export class ProjectCard extends HTMLElement{
+        constructor(){
+            super();
+        }
+    }
+
+    customElements.define('project-card', ProjectCard);
+</script>
+<style lang="scss">
+    .cacadiyaFont{
+        font-family: 'CascadiyaCode';
+    }
+    project-card{
+        $primary: #BB7A4F;
+        $contrast:#161616;
+        display: flex;
+        flex-direction: column;
+        gap:25px;
+        background:$contrast;
+        box-shadow: inset 0 3px 10px #47372D, -10px 40px 50px rgba(#000000,38%);
+        border-radius: 50px 10px 50px 10px;
+        padding: 25px; 
+        max-width:400px;
+        & > *{
+            margin: 0;
+        }
+        h3{
+            @extend .cacadiyaFont;
+            font-size: 25px;
+            color:var(--primary-color);
+            margin-top: 20px;
+        }
+        p{
+            @extend .cacadiyaFont;
+            font-size: 16px;
+            color:var(--primary-color);
+        }
+        .icons{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap:20px;
+            i{
+                font-size: 25px;
+                color:var(--primary-color);
+            }
+        }
+        .actions{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap:20px;
+            button:nth-child(1){
+                @extend .cacadiyaFont;
+                background:$contrast;
+                border: 3px solid $primary;
+                padding: 10px 16px;
+                border-radius: 10px;
+                color:$primary;
+                font-weight: bold;
+            }
+            button:nth-child(2){
+                @extend .cacadiyaFont;
+                background: $primary;
+                border: 3px solid $primary;
+                padding: 10px 16px;
+                border-radius: 10px;
+                color:$contrast;
+                font-weight: bold;
+            }
+        }
+    }
+</style>
+<project-card>
+    <h3>{projectName && projectName}</h3>
+    <p>{description && description}</p>
+    <div class="icons">
+        {techIcons && techIcons.map(icon => <i class={icon} />)}
+    </div>
+    <div class="actions">
+        <button>More Info</button>
+        <button>See Project</button>
+    </div>
+</project-card>

@@ -1,0 +1,470 @@
+---
+import "./style.scss";
+---
+
+<script>
+        import Lenis from "@studio-freight/lenis";
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+        import anime from 'animejs/lib/anime.es.js';
+        import "vanilla-tilt";
+        import Parallax from "parallax-js";
+        import { animate, scroll, timeline } from "motion";
+        var scene = document.getElementById("scene");
+        if (scene) {
+                var parallaxInstance = new Parallax(scene,{
+                        limitX:80,
+                        limitY:0.1
+                });
+                console.log("parallaxInstance", parallaxInstance);
+        }
+        const lenis = new Lenis();
+        function raf(time: any) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        // // console.log("Registered ScrollTrigger plugin",ScrollTrigger);
+        // //rotate and move elements with a class of "box" ("x" is a shortcut for a translateX() transform) over the course of 1 second.
+        // gsap.to(".gsapImage", { rotation: 27, x: 100, duration: 1 });
+        // console.log("gsap",gsap);
+        console.log("Hey from astro");
+        let fadeOutPatternColors = [
+                "radial-gradient(#1A1E1D,#1A1E1D)",
+                "radial-gradient(#242727ff,#1A1E1D)",
+                "radial-gradient(#24272700,#1A1E1D)",
+                "radial-gradient(#1A1E1D00,#1A1E1D)",
+                "radial-gradient(#1A1E1D00,#1A1E1D00)",
+        ];
+        // create a gsap timeline for the timeline above
+        let mainTimeline = gsap.timeline();
+        // add the tweens to the timeline
+        mainTimeline.to(".contentContainer > p.name", {
+                y: 300,
+                duration: 1.3,
+                ease: "power4.out",
+        });
+        mainTimeline.to(
+                "#overlay",
+                {
+                        background: fadeOutPatternColors[0],
+                        duration: 0.5,
+                        ease: "power4.out",
+                },
+                "-=1.3"
+        );
+        mainTimeline.to(
+                ".portfolioContainer",
+                {
+                        scale: 1.35,
+                        duration: 1,
+                        ease: "power4.out",
+                },
+                "-=1.3"
+        );
+        mainTimeline.to(
+                "#overlay",
+                {
+                        background: fadeOutPatternColors[2],
+                        duration: 0.7,
+                        ease: "power4.out",
+                },
+                "-=1"
+        );
+        mainTimeline.to(
+                "#overlay",
+                {
+                        background: fadeOutPatternColors[4],
+                        duration: 4,
+                        ease: "power4.out",
+                },
+                "-=0.3"
+        );
+        mainTimeline.to(
+                ".portfolioContainer",
+                {
+                        scale: 1,
+                        duration: 1,
+                        ease: "power4.out",
+                },
+                "-=3.7"
+        );
+        mainTimeline.to(
+                ".contentContainer > p.name",
+                {
+                        y: -30,
+                        duration: 1.3,
+                        ease: "power4.out",
+                },
+                "-=3.7"
+        );
+        mainTimeline.play()
+
+        gsap.to(".portfolioContainer", {
+                y: -300,
+                scrollTrigger: {
+                        trigger: ".portfolioContainer",
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: true,
+                },
+        });
+
+</script>
+<section class="headerContainer">
+        <div id="overlay"></div>
+        <div id="scene">
+                <img
+                        data-depth="0.1"
+                        class="backgroundImage"
+                        src="subtracted.png"
+                        alt=""
+                />
+        </div>
+        <div class="portfolioContainer">
+                <img
+                        class="portfolioImage"
+                        src="fullImage_removed.png"
+                        alt=""
+                />
+                <span></span>
+        </div>
+        <div class="contentContainer">
+                <p class="name">Kumar Saptam</p>
+                <div class="iconHolder">
+                        <div class="scrollableContainer">
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-vim-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-xd-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-visualstudio-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-vscode-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-python-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-html5-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-css3-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-javascript-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-typescript-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-unity-original"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-svelte-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-tailwindcss-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-sass-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-react-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-pytorch-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-pandas-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-django-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-flask-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-qt-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-nextjs-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-materialui-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-kubernetes-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-less-plain-wordmark"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-jest-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-jupyter-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-karma-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-ionic-original"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-gulp-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-heroku-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-github-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-go-original-wordmark"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-googlecloud-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-flutter-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-gatsby-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-git-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-express-original"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-figma-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-firebase-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-firefox-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-electron-original"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-dart-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-digitalocean-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-docker-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-codepen-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-bootstrap-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-c-plain"></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-arduino-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-angularjs-plain"
+                                ></i>
+                                <i
+                                        data-tilt
+                                        data-tilt-max="20"
+                                        data-tilt-speed="100"
+                                        data-tilt-perspective="100"
+                                        class="devicon devicon-androidstudio-plain"
+                                ></i>
+                        </div>
+                </div>
+                <div class="subtitle">nobody said it was easy</div>
+        </div>
+</section>

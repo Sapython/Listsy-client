@@ -1,0 +1,156 @@
+---
+const { class:className, title, experience, projects, deployments, icons, height } = Astro.props;
+import '../../../shared/styles/fonts/azonix-font.scss'
+let svgHeight:number = 100;
+if (height == 'small'){
+    svgHeight = 80;
+} else if (height == 'medium'){
+    svgHeight = 150;
+} else if (height == 'large'){
+    svgHeight = 220;
+} else {
+    svgHeight = 150;
+}
+---
+<script> 
+    import { animate } from "motion";
+    import { interpolate } from "flubber";
+    import { generateRandomWave } from './waves'
+
+    class ExperienceCard extends HTMLElement {
+        delayValue:number = 0;
+        constructor(){
+            super();
+            console.log("this.dataset.",this.dataset);
+            const initalWave = generateRandomWave(15,2,30,Number(this.dataset.svgheight));
+            const path = this.querySelector("path");
+            let DURATION_RANGE = [3000,5000];
+            var DURATION = Math.floor(Math.random() * (DURATION_RANGE[1] - DURATION_RANGE[0] + 1) + DURATION_RANGE[0]);
+            var changeDuration = DURATION;
+            const animateWave = ()=>{
+                changeDuration = Math.floor(Math.random() * (DURATION_RANGE[1] - DURATION_RANGE[0] + 1) + DURATION_RANGE[0]);
+                if (path){
+                    const currentPath = path.getAttribute("d");
+                    path?.setAttribute('d',initalWave)
+                    if (currentPath){
+                        let randomWave = generateRandomWave(15,2,30,Number(this.dataset.svgheight))
+                        let mixPaths = interpolate(currentPath, randomWave);
+                        animate((progress) => path.setAttribute("d", mixPaths(progress)), {duration: DURATION/1000});
+                    }
+                    if(interval && changeDuration !== DURATION){
+                        DURATION = changeDuration;
+                        clearInterval(interval)
+                        interval = setInterval(animateWave,DURATION)
+                    }
+                }
+            }
+            var interval = setInterval(animateWave,1000);
+            this.delayValue = Math.floor(Math.random() * (3000 - 0 + 1) + 0);
+            this.querySelector("h4")!.setAttribute('style',`animation-delay:${this.delayValue}ms`);
+        }
+    }
+    customElements.define('experience-card', ExperienceCard);
+</script>
+<style lang="scss">
+    experience-card.experience{
+        border-radius: 20px;
+        background: #161616;
+        box-shadow: inset 0px 3px 30px rgba(0,0,0,44%);
+        padding-bottom:0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .content{
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            gap: 10px;
+            padding: 20px;
+            & > *{ // sets the margin to be 0 for every child comp of .content
+                margin: 0;
+            }
+            h4{
+                font-family: "Azonix";
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: var(--primary-color);
+                color: white;
+                font-family: Azonix;
+                text-shadow: 0px 0px 60px var(--primary-color);
+                text-align: left;
+                font-size: 30px;
+                margin: 0px;
+                animation: flicker 3s infinite ;
+                // flicker animation
+                @keyframes flicker {
+                    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                        text-shadow: 0px 0px 60px var(--primary-color);
+                    }
+                    20%, 24%, 55% {
+                        text-shadow: none;
+                    }
+                }
+            }
+            p{
+                color:var(--primary-color);
+                text-align:left;
+            }
+            .icons{
+                display: flex;
+                flex-wrap: wrap;
+                gap:10px;
+                align-items: center;
+                i{
+                    color:var(--primary-color);
+                    font-size: 25px;
+                }
+            }
+        }
+        svg{
+            width: calc(100% + 20px);
+            height: calc(1px * var(--svg-height));
+            transform: translate(-10px);
+            path{
+                fill:var(--primary-color);
+                height: calc(1px * var(--svg-height));
+            }
+        }
+    }
+</style>
+<experience-card class:list={['experience',className]} style={{ '--svg-height': svgHeight }} data-svgHeight={svgHeight}>
+    <div class="content">
+        <h4>{title}</h4>
+        { experience && <p>+{experience} Years Experience</p> }
+        { projects && <p>+{projects} Production Projects</p> }
+        { deployments && <p>+{deployments} Active Deployments</p> }
+        <div class="icons">
+            { icons && icons.map((icon:string)=> <i class={icon}></i> ) }
+        </div>
+    </div>
+    <svg>
+        <defs>
+            <filter id="strong-inner">
+              <feFlood flood-color="rgba(0,0,0,94%)"/>
+
+                <!-- This next operation subtracts the original shape from the red color 
+                field filling the filter region - which will give you a big color border 
+                surrounding the original shape -->
+              <feComposite operator="out" in2="SourceGraphic" />
+          
+          <!-- Next we want to expand the red border so it overlaps the space of the 
+          original shape - the radius 4 below will expand it by 4 pixels -->
+          
+              <feMorphology operator="dilate" radius="10"/>
+              <feGaussianBlur stdDeviation="8" />
+          
+          <!-- After blurring it, we want to select just the parts of the blurred, 
+          expanded border that overlap the original shape - which we can do by using 
+          the 'atop' operator -->
+          
+              <feComposite operator="atop" in2="SourceGraphic"/>
+            </filter>
+        </defs>
+        <path filter="url(#strong-inner)"><path />
+    </svg>
+</div>

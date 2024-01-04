@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="446" height="400" viewBox="0 0 446 400">
+    <defs>
+      <filter id="Polygon_6" x="0" y="0" width="446" height="400" filterUnits="userSpaceOnUse">
+        <feOffset dy="3" input="SourceAlpha"/>
+        <feGaussianBlur stdDeviation="15" result="blur"/>
+        <feFlood flood-opacity="0.161"/>
+        <feComposite operator="in" in2="blur"/>
+        <feComposite in="SourceGraphic"/>
+      </filter>
+      <filter id="Polygon_6-2" x="0" y="0" width="446" height="400" filterUnits="userSpaceOnUse">
+        <feOffset dy="3" input="SourceAlpha"/>
+        <feGaussianBlur stdDeviation="3" result="blur-2"/>
+        <feFlood flood-color="#bb7a4f" flood-opacity="0.659" result="color"/>
+        <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+        <feComposite operator="in" in="color"/>
+        <feComposite operator="in" in2="SourceGraphic"/>
+      </filter>
+    </defs>
+    <g data-type="innerShadowGroup">
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Polygon_6)">
+        <path id="Polygon_6-3" data-name="Polygon 6" d="M164.992,22.655a15,15,0,0,1,26.016,0L343.1,287.531A15,15,0,0,1,330.09,310H25.91A15,15,0,0,1,12.9,287.531Z" transform="translate(401 352) rotate(-180)" fill="#161616"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Polygon_6-2)">
+        <path id="Polygon_6-4" data-name="Polygon 6" d="M164.992,22.655a15,15,0,0,1,26.016,0L343.1,287.531A15,15,0,0,1,330.09,310H25.91A15,15,0,0,1,12.9,287.531Z" transform="translate(401 352) rotate(-180)" fill="#fff"/>
+      </g>
+    </g>
+  </svg>
+  

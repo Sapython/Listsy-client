@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PortfolioHeader from './PortfolioHeader/PortfolioHeader.astro'
+import '../../shared/styles/fonts/amsterdam-one-font.scss'
+import '../../shared/styles/fonts/cascadiya-code-font.scss'
+import '../../shared/styles/fonts/devicon.min.css'
+import WhatCanIDo from "./WhatCanIDo/WhatCanIDo.astro"
+import Spacer from "../../shared/components/Spacer.astro"
+import WhatHaveIDone from "./WhatHaveIDone/WhatHaveIDone.astro"
+import WhomIHaveWorkedWith from "./WhomIHaveWorkedWith/WhomIHaveWorkedWith.astro"
+import AboutMe from "./AboutMe/AboutMe.astro"
+import ContactMe from "./ContactMe/ContactMe.astro"
+---
+<Layout title="Portfolio">
+    <PortfolioHeader></PortfolioHeader>
+    <Spacer margin="large"></Spacer>
+    <WhatCanIDo></WhatCanIDo>
+    <Spacer margin="large"></Spacer>
+    <WhatHaveIDone></WhatHaveIDone>
+    <Spacer margin="large"></Spacer>
+    <WhomIHaveWorkedWith></WhomIHaveWorkedWith>
+    <Spacer margin="large"></Spacer>
+    <AboutMe></AboutMe>
+    <Spacer margin="large"></Spacer>
+    <ContactMe></ContactMe>
+    <Spacer margin="large"></Spacer>
+    <Spacer margin="large"></Spacer>
+</Layout>

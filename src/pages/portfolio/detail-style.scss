@@ -1,0 +1,109 @@
+section.detail{
+    background: var(--background-color);
+    $padding-inline:120px;
+    .content{
+        max-width: 500px;
+        h2{
+            font-family: 'RustyCage';
+            font-weight: 500;
+            font-size: 80px;
+            margin-bottom: 20px;
+            color:var(--primary-color);
+        }
+        br{
+            display: block;
+            margin-bottom: 20px;
+        }
+        p{
+            font-family: 'CascadiyaCode';
+            color:var(--primary-color);
+            font-size: 20px;
+        }
+        button{
+            height: 50px;
+            background: transparent;
+            color:var(--primary-contrast-color);
+            border: none;
+            border-radius: 20px;
+            background: var(--primary-color);
+            font-family: 'CascadiyaCode';
+            font-size: 20px;
+            padding: 10px 25px;
+        }
+        .icons{
+            display: flex;
+            gap:10px;
+        }
+        .buttons{
+            display: flex;
+            gap:20px;
+            button.icon{
+                background: transparent;
+                border: 2px solid var(--primary-color);
+                border-radius: 25px;
+                padding: 15px;
+                width: 50px;
+                height: 50px;
+                padding: 0;
+            }
+        }
+    }
+    .experiences{
+        display: grid;
+        grid-template-areas: 'webDev webDev appDev' 'tools backendDev appDev';
+        gap:20px;
+        .webDev{
+            grid-area: webDev;
+        }
+        .appDev{
+            grid-area: appDev;
+        }
+        .tools{
+            grid-area: tools;
+        }
+        .backendDev{
+            grid-area: backendDev;
+        }
+    }
+    .projects{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:45px;
+        padding-inline: 70px; // additional padding
+    }
+    .companies{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &.two-col{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        padding-inline: $padding-inline;
+        .col{
+            width: 48%;
+            margin-bottom: 2rem;
+            @media (max-width: 768px){
+                width: 100%;
+            }
+        }
+    }
+    &.row{
+        padding-inline: $padding-inline;
+        display: flex;
+        flex-direction: column;
+        gap:20px;
+    }
+    &.aboutMe{
+        padding-inline: $padding-inline;
+        display: grid;
+        grid-template-columns: 3fr 1.5fr;
+        .content{
+            max-width: inherit;
+        }
+    }
+}

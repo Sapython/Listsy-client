@@ -1,0 +1,19 @@
+---
+import CompanyCard from "./CompanyCard.astro";
+
+---
+<style lang="scss">
+    @import url('../detail-style.scss');
+</style>
+<section class="detail row">
+    <div class="content">
+        <h2>Whom i have worked with</h2>
+        <p>My past experiences, for the professional journey.</p>
+        <br>
+    </div>
+    <div class="companies">
+        <CompanyCard title="Github" image="github-original.png" startYear="2018" endYear="2023"></CompanyCard>
+        <CompanyCard title="Shreeva" flipped={true} image="shreeva.png" startYear="2021" endYear="2023"></CompanyCard>
+        <CompanyCard title="Swayambhu" image="swayambhu.png" startYear="2019" endYear="2021"></CompanyCard>
+    </div>
+</section>
